@@ -1,3 +1,10 @@
+pragma solidity ^0.8.3;
+// SPDX-License-Identifier: MIT
+
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+
+
 contract PS is ERC721URIStorage {
     uint8 public counter=0;
     address payable[] public team;
