@@ -4,18 +4,19 @@ pragma solidity ^0.8.3;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-
 contract PS is ERC721URIStorage {
-    uint8 public counter=0;
+    uint16 public counter=0;
     address payable[] public team;
+    address payable public owner;
     uint256[] public shares;
-    uint256 basePrice=1000000000000000;
+    string public contractURI = "https://bit.ly/3pTJiFY";
+    uint256 basePrice=76000000000000000;
     mapping(uint16=>string) oi;
        constructor(address payable[] memory bosiiLaBani, uint256[] memory procente)ERC721("Project Snooze", "SHP") {
         team=bosiiLaBani;
+        owner=payable(msg.sender);
         shares=procente;
        }
-    
        
     function dividends()public payable{
         uint256 total = address(this).balance;
@@ -24,11 +25,10 @@ contract PS is ERC721URIStorage {
         }
     }
     
-    
     function createToken(string memory tokenURI) public payable returns (uint) {
-        require(counter<7778, "No more");
+        require(counter<7778);
         if (counter>7){
-            require(msg.value>=basePrice,"Minimum token price is 0.07777 ETH.");
+            require(msg.value>=basePrice);
         }
         counter+=1;
         _mint(msg.sender, counter);
